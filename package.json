@@ -1,0 +1,26 @@
+{
+  "name": "rhpms",
+  "version": "1.0.0",
+  "description": "freecodecamp solution to Request Header Parser Microservice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gussamer/rhpms.git"
+  },
+  "keywords": [
+    "freecodecamp",
+    "microservice"
+  ],
+  "author": "Angus Alves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gussamer/rhpms/issues"
+  },
+  "homepage": "https://github.com/gussamer/rhpms#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
