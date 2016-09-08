@@ -3,14 +3,14 @@ var app = express();
 var lp = process.env.PORT || 8080;
 
 app.get('/', function (req, res) {
-  var reg = /[^\(]*(\([^\)*]\))[.*]/;
-  var os= reg.exec(req.headers["user-agent"])[1];
+  var osreg = /[^\(]*\(([^\)]*)\)?/;
+  var langreg = /([^,]*)/;
   var retobj = {
     "ipaddress":req.headers['x-forwarded-for'] || req.connection.remoteAddress
-    ,"langage":req.headers["accept-language"]
-    ,"software":os
+    ,"language":langreg.exec(req.headers["accept-language"])[1]
+    ,"software":osreg.exec(req.headers["user-agent"])[1]
   };
-  res.json(req.headers["user-agent"]);
+  res.json(retobj);
 });
 
 app.listen(lp, function () {
