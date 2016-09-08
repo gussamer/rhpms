@@ -1,15 +1,16 @@
-var express = require('express'), useragent = require('express-useragent');
+var express = require('express');
 var app = express();
 var lp = process.env.PORT || 8080;
 
 app.get('/', function (req, res) {
-  var ua = useragent.parse(req.headers["user-agent"]);
+  var reg = /[^\(]*(\([^\)*]\))[.*]/;
+  var os= reg.exec(req.headers["user-agent"])[1];
   var retobj = {
-    "ipaddress":""
+    "ipaddress":req.headers['x-forwarded-for'] || req.connection.remoteAddress
     ,"langage":req.headers["accept-language"]
-    ,"software":req.headers['x-forwarded-for'] || req.connection.remoteAddress
+    ,"software":os
   };
-  res.json(ua);
+  res.json(req.headers["user-agent"]);
 });
 
 app.listen(lp, function () {
